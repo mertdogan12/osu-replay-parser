@@ -13,7 +13,7 @@ import (
 
 func ConvertToJson(filePath string) (*OsrObject, error) {
 	data, err := os.ReadFile(filePath)
-	var osrJson *OsrObject
+	var osrJson OsrObject
 
 	if err != nil {
 		return nil, err
@@ -83,7 +83,7 @@ func ConvertToJson(filePath string) (*OsrObject, error) {
 	// Online Score Id
 	osrJson.OnlineScoreId = binary.LittleEndian.Uint64(data[:8])
 
-	return osrJson, err
+	return &osrJson, err
 }
 
 func convertFirstString(data []byte) (string, []byte) {

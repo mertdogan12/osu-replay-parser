@@ -1,11 +1,12 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"log"
 	"os"
 
-	"github.com/blamebutton/orpa/parser"
+	parser "github.com/mertdogan12/osu-replay-converter/pkg/osu-replay-parser"
 )
 
 func main() {
@@ -18,12 +19,19 @@ func main() {
 
 	// Parse the replay
 	filePath := os.Args[1]
-	replay, err := parser.GetFileReplay(filePath)
+	replay, err := parser.ConvertToJson(filePath)
+
 	if err != nil {
-		fmt.Println("Filepath:", filePath)
 		log.Fatal(err)
 		return
 	}
 
-	fmt.Println(replay.ReplayData)
+	json, err := json.MarshalIndent(replay, "\t", "\t")
+
+	if err != nil {
+		log.Fatal(err)
+		return
+	}
+
+	fmt.Println(string(json))
 }
