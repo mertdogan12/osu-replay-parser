@@ -15,5 +15,5 @@
 # vendor/
 
 # Output files
-out.lzma
-out
+**/out.lzma
+**/out

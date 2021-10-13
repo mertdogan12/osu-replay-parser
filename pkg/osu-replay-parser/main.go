@@ -11,7 +11,7 @@ import (
 	"ekyu.moe/leb128"
 )
 
-func ConvertToJson(filePath string) (*OsrObject, error) {
+func ConvertToObject(filePath string) (*OsrObject, error) {
 	data, err := os.ReadFile(filePath)
 	var osrJson OsrObject
 

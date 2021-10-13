@@ -19,7 +19,7 @@ func main() {
 
 	// Parse the replay
 	filePath := os.Args[1]
-	replay, err := parser.ConvertToJson(filePath)
+	replay, err := parser.ConvertToObject(filePath)
 
 	if err != nil {
 		log.Fatal(err)
