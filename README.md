@@ -1,2 +1,2 @@
 # osu-replay-converter
-Converts a Replay file (.ors) to an Videofile
+Converts an osu replay file (.ors) to a Videofile
