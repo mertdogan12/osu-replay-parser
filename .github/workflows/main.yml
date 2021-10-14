@@ -35,6 +35,9 @@ jobs:
       - name: Run coverage
         run: go test ./... -race -coverprofile=coverage.out -covermode=atomic
         
+      - name: Just ls
+        run: ls
+        
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v2
         with:
