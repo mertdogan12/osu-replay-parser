@@ -40,3 +40,5 @@ jobs:
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
         
+      - name: Shows test outputs
+        run: cat tests/out.json

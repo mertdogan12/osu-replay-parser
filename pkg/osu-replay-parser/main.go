@@ -82,7 +82,6 @@ func ConvertToObject(filePath string) (*OsrObject, error) {
 	dataLenght := binary.LittleEndian.Uint32(data[:4])
 	compressedData := data[4 : dataLenght+4]
 	data = data[dataLenght+4:]
-	os.WriteFile("out.lzma", compressedData, 0644)
 
 	r, err := lzma.NewReader(bytes.NewReader(compressedData))
 	osrObject.ReplayData, err = convertReplayString(streamToString(r))
