@@ -4,14 +4,11 @@ import (
 	"bytes"
 	"encoding/binary"
 	"errors"
-	"fmt"
-	"io"
 	"log"
 	"os"
 	"strconv"
 	"strings"
 
-	"ekyu.moe/leb128"
 	"github.com/ulikunitz/xz/lzma"
 )
 
@@ -88,7 +85,7 @@ func ConvertToObject(filePath string) (*OsrObject, error) {
 	os.WriteFile("out.lzma", compressedData, 0644)
 
 	r, err := lzma.NewReader(bytes.NewReader(compressedData))
-	fmt.Println(streamToString(r))
+	osrObject.ReplayData, err = convertReplayString(streamToString(r))
 	if err != nil {
 		log.Fatal(err)
 		return nil, err
@@ -98,20 +95,4 @@ func ConvertToObject(filePath string) (*OsrObject, error) {
 	osrObject.OnlineScoreId = binary.LittleEndian.Uint64(data[:8])
 
 	return &osrObject, err
-}
-
-func convertFirstString(data []byte) (string, []byte) {
-	if data[0] == 0x0b {
-		dataLenght, n := leb128.DecodeUleb128(data[1:])
-		return string(data[1+n : dataLenght+2]), data[1+uint64(n)+dataLenght:]
-	} else {
-		fmt.Println(data[0])
-		return "", data
-	}
-}
-
-func streamToString(stream io.Reader) string {
-	buf := new(bytes.Buffer)
-	buf.ReadFrom(stream)
-	return buf.String()
 }
