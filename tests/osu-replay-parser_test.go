@@ -2,12 +2,13 @@ package tests
 
 import (
 	"encoding/json"
+	"os"
 	"testing"
 
 	parser "github.com/mertdogan12/osu-replay-converter/pkg/osu-replay-parser"
 )
 
-func osuReplayParser(t *testing.T) {
+func TestOsuReplayParser(t *testing.T) {
 	filePath := "../test-replays/test1.osr"
 	replay, err := parser.ConvertToObject(filePath)
 	if err != nil {
@@ -21,5 +22,5 @@ func osuReplayParser(t *testing.T) {
 		return
 	}
 
-	t.Log(string(json))
+	os.WriteFile("out.json", json, 0644)
 }
