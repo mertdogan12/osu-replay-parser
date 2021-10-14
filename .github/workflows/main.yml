@@ -39,6 +39,9 @@ jobs:
         uses: codecov/codecov-action@v2
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
+          
+      - name: Just runs ls
+        run: ls
         
       - name: Shows test outputs
-        run: cat tests/out.json
+        run: cat ./tests/out.json
