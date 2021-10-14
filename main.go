@@ -2,7 +2,6 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
 	"log"
 	"os"
 
@@ -33,5 +32,5 @@ func main() {
 		return
 	}
 
-	fmt.Println(string(json))
+	os.WriteFile("out.json", json, 0644)
 }

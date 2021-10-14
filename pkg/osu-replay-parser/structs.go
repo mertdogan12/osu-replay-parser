@@ -22,6 +22,15 @@ type OsrObject struct {
 	Lifebar [][]float32
 	// Time stamp
 	TimeStamp uint64
+	// Replay Data
+	ReplayData []ReplayData
 	// Online Score Id
 	OnlineScoreId uint64
+}
+
+type ReplayData struct {
+	W uint64
+	X float32
+	Y float32
+	Z uint32
 }
