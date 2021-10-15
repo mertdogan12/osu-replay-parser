@@ -17,3 +17,6 @@
 # Output files
 **/out.*
 **/out
+
+# Test files
+skins/*
