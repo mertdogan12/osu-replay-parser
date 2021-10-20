@@ -5,7 +5,7 @@ import (
 	"os"
 	"testing"
 
-	parser "github.com/mertdogan12/osu-replay-converter/pkg/osu-replay-parser"
+	parser "github.com/mertdogan-org/osu-replay-converter/pkg/osu-replay-parser"
 )
 
 func TestOsuReplayParser(t *testing.T) {

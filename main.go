@@ -1,16 +1,10 @@
 package main
 
-import (
-	"encoding/json"
-	"log"
-	"os"
-
-	parser "github.com/mertdogan-org/osu-replay-converter/pkg/osu-replay-parser"
-)
+import "github.com/mertdogan-org/osu-replay-converter/pkg/opengl"
 
 func main() {
 	// Gets command line arguments
-	if len(os.Args) != 2 {
+	/*if len(os.Args) != 2 {
 		log.Fatal("Filepath is missing \n",
 			"[command] <filepath>")
 		return
@@ -32,5 +26,6 @@ func main() {
 		return
 	}
 
-	os.WriteFile("out.json", json, 0644)
+	os.WriteFile("out.json", json, 0644)*/
+	opengl.Init(1280, 720)
 }
