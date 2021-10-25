@@ -9,18 +9,18 @@ import (
 // Compiles an shader from an a shader file.
 // Then returns the shader
 func compileShader(shaderFile string, shaderType uint32) (uint32, error) {
-	shaderSource, err := os.ReadFile(shaderFile)
+	shaderBytes, err := os.ReadFile(shaderFile)
 	if err != nil {
 		return 0, err
 	}
 
 	shader := gl.CreateShader(shaderType)
-	csourse, free := gl.Strs(string(shaderSource))
+	csourse, free := gl.Strs(string(shaderBytes))
 	gl.ShaderSource(shader, 1, csourse, nil)
 	free()
 	gl.CompileShader(shader)
 
-	err = getError(shader)
+	err = getError(shader, false)
 	if err != nil {
 		return 0, err
 	}
