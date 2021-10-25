@@ -11,6 +11,7 @@ func Init(winWidth int, winHeight int) {
 	if err != nil {
 		panic(err)
 	}
+
 	defer glfw.Terminate()
 
 	window, err := glfw.CreateWindow(winWidth, winHeight, "OpenGL", nil, nil)
@@ -19,9 +20,13 @@ func Init(winWidth int, winHeight int) {
 	}
 
 	window.MakeContextCurrent()
+	defer window.Destroy()
 
 	// OpenGL init
-	gl.Init()
+	err = gl.Init()
+	if err != nil {
+		panic(err)
+	}
 
 	// Vertex shader
 	vertexShader, err := compileShader("pkg/opengl/shaders/default.vert", gl.VERTEX_SHADER)
@@ -41,7 +46,7 @@ func Init(winWidth int, winHeight int) {
 	gl.AttachShader(shaderProgram, fragmentShader)
 	gl.LinkProgram(shaderProgram)
 
-	err = getError(shaderProgram)
+	err = getError(shaderProgram, true)
 	if err != nil {
 		panic(err)
 	}
