@@ -1,4 +1,4 @@
-module github.com/mertdogan-org/osu-replay-converter
+module github.com/mertdogan12/osu-replay-converter
 
 go 1.17
 
