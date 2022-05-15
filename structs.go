@@ -2,7 +2,7 @@ package parser
 
 type OsrObject struct {
 	// Gamemode, Game -& Replayinformations
-	Gametype    string
+	Gametype    Gametype
 	Version     uint32
 	BeatmapHash string
 	PlayerName  string
@@ -33,4 +33,9 @@ type ReplayData struct {
 	X float32
 	Y float32
 	Z uint32
+}
+
+type Gametype struct {
+	id   int8
+	name string
 }
