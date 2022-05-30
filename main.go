@@ -85,6 +85,7 @@ func Parse(data []byte) (*OsrObject, error) {
 	data = data[8:]
 
 	// Replay Data
+	// TODO check dataLenght --> error
 	dataLenght := binary.LittleEndian.Uint32(data[:4])
 	compressedData := data[4 : dataLenght+4]
 	data = data[dataLenght+4:]
