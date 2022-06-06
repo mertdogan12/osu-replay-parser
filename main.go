@@ -75,6 +75,9 @@ func Parse(data []byte) (*OsrObject, error) {
 		osrObject.Lifebar = make([][]float32, len(lifeBarArray))
 		for i, element := range lifeBarArray {
 			elements := strings.Split(element, "|")
+			if len(elements) < 2 {
+				continue
+			}
 			u, err := strconv.ParseFloat(elements[0], 32)
 			v, err := strconv.ParseFloat(elements[1], 32)
 
