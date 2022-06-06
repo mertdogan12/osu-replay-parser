@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/binary"
 	"errors"
+	"fmt"
 	"os"
 	"strconv"
 	"strings"
@@ -42,10 +43,14 @@ func Parse(data []byte) (*OsrObject, error) {
 	data = data[1:]
 
 	// Version, BeatmapHash, PlayerName, ReplayHash
+	var err error
 	osrObject.Version = binary.LittleEndian.Uint32(data[:4])
-	osrObject.BeatmapHash, data = convertFirstString(data[4:])
-	osrObject.PlayerName, data = convertFirstString(data)
-	osrObject.ReplayHash, data = convertFirstString(data)
+	osrObject.BeatmapHash, data, err = convertFirstString(data[4:])
+	osrObject.PlayerName, data, err = convertFirstString(data)
+	osrObject.ReplayHash, data, err = convertFirstString(data)
+	if err != nil {
+		return nil, err
+	}
 
 	// Scoreinformation, Mods
 	osrObject.ThreeHunreds = binary.LittleEndian.Uint16(data[:2])
@@ -61,7 +66,10 @@ func Parse(data []byte) (*OsrObject, error) {
 	data = data[23:]
 
 	// Lifebar
-	lifeBarString, data := convertFirstString(data)
+	lifeBarString, data, err := convertFirstString(data)
+	if err != nil {
+		return nil, err
+	}
 	if lifeBarString != "" {
 		lifeBarArray := strings.Split(lifeBarString, ",")
 		osrObject.Lifebar = make([][]float32, len(lifeBarArray))
@@ -85,7 +93,11 @@ func Parse(data []byte) (*OsrObject, error) {
 	data = data[8:]
 
 	// Replay Data
+	// TODO check dataLenght --> error
 	dataLenght := binary.LittleEndian.Uint32(data[:4])
+	if dataLenght+4 >= uint32(len(data[4:])) {
+		return nil, errors.New(fmt.Sprintf("Parsed replay data lenght is to high, %d, %#x %#x %#x %#x", dataLenght, data[0], data[1], data[2], data[3]))
+	}
 	compressedData := data[4 : dataLenght+4]
 	data = data[dataLenght+4:]
 

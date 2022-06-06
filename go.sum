@@ -1,8 +1,6 @@
-ekyu.moe/leb128 v0.0.0-20171215192340-34c607808d8a h1:lJ7tBLKnSmVWQdJc+CHaC2PTUMFtNhAUUCG7OkkvsJ0=
-ekyu.moe/leb128 v0.0.0-20171215192340-34c607808d8a/go.mod h1:hphPjsG3qJdFKRttMyBWptntD0vAUE3NUenOGL0914A=
-github.com/go-gl/gl v0.0.0-20210905235341-f7a045908259 h1:8q7+xl2D2qHPLTII1t4vSMNP2VKwDcn+Avf2WXvdB1A=
-github.com/go-gl/gl v0.0.0-20210905235341-f7a045908259/go.mod h1:wjpnOv6ONl2SuJSxqCPVaPZibGFdSci9HFocT9qtVYM=
-github.com/go-gl/glfw/v3.3/glfw v0.0.0-20210727001814-0db043d8d5be h1:vEIVIuBApEBQTEJt19GfhoU+zFSV+sNTa9E9FdnRYfk=
-github.com/go-gl/glfw/v3.3/glfw v0.0.0-20210727001814-0db043d8d5be/go.mod h1:tQ2UAYgL5IevRw8kRxooKSPJfGvJ9fJQFa0TUsXzTg8=
+github.com/aviate-labs/leb128 v0.3.0 h1:s9htRv3OYk8nuHqJu9PiVFJxv1jIUTIcpEeiURa91uQ=
+github.com/aviate-labs/leb128 v0.3.0/go.mod h1:GclhBOjhIKmcDlgHKhj0AEZollzERfZUbcRUKiQVqgY=
+github.com/mertdogan12/leb128 v0.3.1-0.20220606220427-becd34537f3d h1:JxYYFQGNM54IsXcH+e3d8crUOtfTL4UPWVobLdLRws0=
+github.com/mertdogan12/leb128 v0.3.1-0.20220606220427-becd34537f3d/go.mod h1:TxbHj2sHb2Gw95W1xMWKqKIH4ZkX1ClUvYLzOwrwXOo=
 github.com/ulikunitz/xz v0.5.10 h1:t92gobL9l3HE202wg3rlk19F6X+JOxl9BBrCCMYEYd8=
 github.com/ulikunitz/xz v0.5.10/go.mod h1:nbz6k7qbPmH4IRqmfOplQw/tblSgqTqBwxkY0oWt/14=
