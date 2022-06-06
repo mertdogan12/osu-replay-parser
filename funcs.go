@@ -6,15 +6,19 @@ import (
 	"strconv"
 	"strings"
 
-	"ekyu.moe/leb128"
+	"github.com/mertdogan12/leb128"
 )
 
-func convertFirstString(data []byte) (string, []byte) {
+func convertFirstString(data []byte) (string, []byte, error) {
 	if data[0] == 0x0b {
-		dataLenght, n := leb128.DecodeUleb128(data[1:])
-		return string(data[1+n : dataLenght+2]), data[1+uint64(n)+dataLenght:]
+		dataLenght, n, err := leb128.DecodeUnsigned(bytes.NewReader(data[1:]))
+		dataLen := dataLenght.Uint64()
+		if err != nil {
+			return "", make([]byte, 0), err
+		}
+		return string(data[1+n : dataLen+2]), data[1+uint64(n)+dataLen:], nil
 	} else {
-		return "", data
+		return "", data, nil
 	}
 }
 

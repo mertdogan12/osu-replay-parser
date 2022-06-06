@@ -15,6 +15,9 @@ func TestParse(t *testing.T) {
 	}
 
 	for _, f := range files {
-		parser.ParseFile(replayDir + f.Name())
+		_, err := parser.ParseFile(replayDir + f.Name())
+		if err != nil {
+			t.Error(err)
+		}
 	}
 }
