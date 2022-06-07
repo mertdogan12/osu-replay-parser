@@ -96,7 +96,6 @@ func Parse(data []byte) (*OsrObject, error) {
 	data = data[8:]
 
 	// Replay Data
-	// TODO check dataLenght --> error
 	dataLenght := binary.LittleEndian.Uint32(data[:4])
 	if dataLenght+4 >= uint32(len(data[4:])) {
 		return nil, errors.New(fmt.Sprintf("Parsed replay data lenght is to high, %d, %#x %#x %#x %#x", dataLenght, data[0], data[1], data[2], data[3]))
