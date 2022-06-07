@@ -2,7 +2,6 @@ package parser
 
 import (
 	"bytes"
-	"fmt"
 	"io"
 	"strconv"
 	"strings"
@@ -30,9 +29,6 @@ func streamToString(stream io.Reader) string {
 }
 
 func convertReplayString(input string) ([]ReplayData, error) {
-	if input == "" {
-		fmt.Println("LULLLUL")
-	}
 	elements := strings.Split(input, ",")
 	replayData := make([]ReplayData, len(elements))
 

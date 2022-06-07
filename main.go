@@ -103,10 +103,16 @@ func Parse(data []byte) (*OsrObject, error) {
 	compressedData := data[4 : dataLenght+4]
 	data = data[dataLenght+4:]
 
-	r, err := lzma.NewReader(bytes.NewReader(compressedData))
-	osrObject.ReplayData, err = convertReplayString(streamToString(r))
-	if err != nil {
-		return nil, err
+	if len(compressedData) != 0 {
+		r, err := lzma.NewReader(bytes.NewReader(compressedData))
+		if err != nil {
+			return nil, err
+		}
+
+		osrObject.ReplayData, err = convertReplayString(streamToString(r))
+		if err != nil {
+			return nil, err
+		}
 	}
 
 	// Online Score Id
