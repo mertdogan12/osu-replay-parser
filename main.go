@@ -96,7 +96,6 @@ func Parse(data []byte) (*OsrObject, error) {
 	data = data[8:]
 
 	// Replay Data
-	// TODO check dataLenght --> error
 	dataLenght := binary.LittleEndian.Uint32(data[:4])
 	if dataLenght+4 >= uint32(len(data[4:])) {
 		return nil, errors.New(fmt.Sprintf("Parsed replay data lenght is to high, %d, %#x %#x %#x %#x", dataLenght, data[0], data[1], data[2], data[3]))
@@ -104,10 +103,16 @@ func Parse(data []byte) (*OsrObject, error) {
 	compressedData := data[4 : dataLenght+4]
 	data = data[dataLenght+4:]
 
-	r, err := lzma.NewReader(bytes.NewReader(compressedData))
-	osrObject.ReplayData, err = convertReplayString(streamToString(r))
-	if err != nil {
-		return nil, err
+	if len(compressedData) != 0 {
+		r, err := lzma.NewReader(bytes.NewReader(compressedData))
+		if err != nil {
+			return nil, err
+		}
+
+		osrObject.ReplayData, err = convertReplayString(streamToString(r))
+		if err != nil {
+			return nil, err
+		}
 	}
 
 	// Online Score Id
